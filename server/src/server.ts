@@ -36,10 +36,15 @@ const startServer = async () => {
     console.log('🔗 Using external database connection');
   }
 
-  serve({
-    fetch: app.fetch,
-    port,
-  });
+  try {
+    serve({
+      fetch: app.fetch,
+      port,
+    });
+  } catch (error) {
+    console.error('Failed to start server:', error);
+    process.exit(1);
+  }
 };
 
 // Graceful shutdown

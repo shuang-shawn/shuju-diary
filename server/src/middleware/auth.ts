@@ -21,6 +21,7 @@ export const authMiddleware: MiddlewareHandler = async (c, next) => {
     const token = authHeader.split('Bearer ')[1];
     const firebaseProjectId = getFirebaseProjectId();
     const firebaseUser = await verifyFirebaseToken(token, firebaseProjectId);
+    console.log('Firebase User:', firebaseUser);
 
     const databaseUrl = getDatabaseUrl();
     const db = await getDatabase(databaseUrl);
@@ -40,6 +41,8 @@ export const authMiddleware: MiddlewareHandler = async (c, next) => {
       .from(users)
       .where(eq(users.id, firebaseUser.id))
       .limit(1);
+
+    console.log('Database User:', user);
 
     if (!user) {
       throw new Error('Failed to create or retrieve user');

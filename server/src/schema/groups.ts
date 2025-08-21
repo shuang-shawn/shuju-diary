@@ -12,3 +12,4 @@ export const groups = appSchema.table('groups', {
 });
 
 export type Group = typeof groups.$inferSelect;
+

@@ -1,7 +1,8 @@
-import {
-  Home,
-  Settings,
-  Users, // Import Users icon
+import { 
+  Home, 
+  Settings, 
+  FileText,
+  Layers,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -19,7 +20,7 @@ import {
 export function AppSidebar() {
   const location = useLocation();
 
-  const isActive = (path: string) => location.pathname === path || location.pathname.startsWith(`${path}/`);
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <Sidebar collapsible="icon" className="sticky top-12 h-[calc(100vh-3rem)] z-40">
@@ -37,9 +38,9 @@ export function AppSidebar() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Groups" isActive={isActive('/groups')} asChild>
+                <SidebarMenuButton tooltip="Groups" isActive={location.pathname.startsWith('/groups')} asChild>
                   <Link to="/groups">
-                    <Users className="w-4 h-4" />
+                    <Layers className="w-4 h-4" />
                     <span>Groups</span>
                   </Link>
                 </SidebarMenuButton>

@@ -15,3 +15,4 @@ export const diaryNotes = appSchema.table('diary_notes', {
 });
 
 export type DiaryNote = typeof diaryNotes.$inferSelect;
+

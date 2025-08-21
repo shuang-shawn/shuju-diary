@@ -123,11 +123,15 @@ export const api = {
   },
 
   // Diary Note API endpoints
-  createDiaryNote: async (groupId: string, title: string, content: string) => {
+  createDiaryNote: async (groupId: string, title: string, content: string, createdAt?: string) => {
+    const body: any = { title, content };
+    if (createdAt) {
+      body.createdAt = createdAt;
+    }
     const response = await fetchWithAuth(`/api/v1/protected/groups/${groupId}/notes`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, content }),
+      body: JSON.stringify(body),
     });
     return response.json();
   },

@@ -12,6 +12,7 @@ import {
   SidebarProvider,
   SidebarInset,
 } from "@/components/ui/sidebar";
+import { CalendarPage } from '@/pages/CalendarPage';
 
 function AppContent() {
   const { user, loading } = useAuth();
@@ -38,6 +39,7 @@ function AppContent() {
                   <Route path="/groups" element={<GroupsPage />} />
                   <Route path="/groups/:groupId" element={<GroupDetailPage />} />
                   <Route path="/settings" element={<Settings />} />
+                  <Route path="/calendar" element={<CalendarPage />} />
                 </Routes>
               </main>
             </SidebarInset>

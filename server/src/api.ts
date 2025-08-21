@@ -315,7 +315,7 @@ diaryNoteRoutes.post('/', async (c) => {
   const user = c.get('user');
   if (!user) return c.json({ error: 'Unauthorized' }, 401);
   const { groupId } = c.req.param(); // Group ID from parent route
-  const { title, content } = await c.req.json();
+  const { title, content, createdAt } = await c.req.json();
 
   if (!title || !content) return c.json({ error: 'Title and content are required' }, 400);
 
@@ -324,7 +324,7 @@ diaryNoteRoutes.post('/', async (c) => {
     if (!memberRole) return c.json({ error: 'Not a member of this group' }, 403);
 
     const noteId = crypto.randomUUID();
-    const newNote = await createDiaryNote(db, { id: noteId, groupId, userId: user.id, title, content });
+    const newNote = await createDiaryNote(db, { id: noteId, groupId, userId: user.id, title, content, createdAt: createdAt ? new Date(createdAt) : undefined });
     return c.json(newNote[0], 201);
   } catch (error) {
     console.error('Error creating diary note:', error);

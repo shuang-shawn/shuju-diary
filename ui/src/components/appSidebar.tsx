@@ -3,6 +3,7 @@ import {
   Settings, 
   FileText,
   Layers,
+  CalendarDays,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -42,6 +43,14 @@ export function AppSidebar() {
                   <Link to="/groups">
                     <Layers className="w-4 h-4" />
                     <span>Groups</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Calendar" isActive={isActive('/calendar')} asChild>
+                  <Link to="/calendar">
+                    <CalendarDays className="w-4 h-4" />
+                    <span>Calendar</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>

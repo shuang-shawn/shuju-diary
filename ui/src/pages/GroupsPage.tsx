@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 
 interface Group {
   groups: {
@@ -28,6 +29,7 @@ export function GroupsPage() {
   const [newGroupName, setNewGroupName] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [showErrorDialog, setShowErrorDialog] = useState(false);
 
   console.log('Current groups state:', groups);
 
@@ -48,6 +50,7 @@ export function GroupsPage() {
     } catch (err) {
       console.error('Failed to fetch groups:', err);
       setError('Failed to load groups. Please try again later.');
+      setShowErrorDialog(true); // Open the dialog for loading errors
     } finally {
       setLoading(false);
     }
@@ -56,6 +59,7 @@ export function GroupsPage() {
   const handleCreateGroup = async () => {
     if (!newGroupName.trim()) {
       setError('Group name cannot be empty.');
+      setShowErrorDialog(true); // Open the dialog
       return;
     }
     try {
@@ -81,15 +85,12 @@ export function GroupsPage() {
     } catch (err) {
       console.error('Failed to create group:', err);
       setError('Failed to create group. Please try again.');
+      setShowErrorDialog(true); // Open the dialog for other errors too
     }
   };
 
   if (loading) {
     return <div className="container mx-auto p-6 text-center">Loading groups...</div>;
-  }
-
-  if (error) {
-    return <div className="container mx-auto p-6 text-center text-red-500">{error}</div>;
   }
 
   return (
@@ -132,6 +133,20 @@ export function GroupsPage() {
           </div>
         )
       }
+      
+      <Dialog open={showErrorDialog} onOpenChange={setShowErrorDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Error</DialogTitle>
+          </DialogHeader>
+          <div className="py-4">
+            <p>{error}</p>
+          </div>
+          <DialogFooter>
+            <Button onClick={() => setShowErrorDialog(false)}>Close</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

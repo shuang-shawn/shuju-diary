@@ -38,3 +38,89 @@
 .read-the-docs {
   color: #888;
 }
+
+html.dark .react-calendar {
+  background-color: #1a1a1a; /* Darker background */
+  border-color: #333;
+}
+
+html.dark .react-calendar__navigation button {
+  color: #ccc; /* Lighter text for navigation */
+}
+
+html.dark .react-calendar__tile {
+  background: #2a2a2a; /* Darker tile background */
+  color: #eee; /* Lighter text for days */
+}
+
+html.dark .react-calendar__tile--now {
+  background: #3a3a3a; /* Today's tile background */
+}
+
+html.dark .react-calendar__tile--active {
+  background: #60a5fa; /* Active tile background (blue) */
+  color: white;
+}
+
+html.dark .react-calendar__tile--range {
+  background: #4f46e5; /* Range selection background */
+  color: white;
+}
+
+html.dark .react-calendar__tile--rangeStart,
+html.dark .react-calendar__tile--rangeEnd {
+  background: #60a5fa; /* Range start/end background */
+  color: white;
+}
+
+html.dark .react-calendar__month-view__weekdays__weekday,
+html.dark .react-calendar__month-view__weekdays__weekday abbr {
+  color: #bbb; /* Weekday labels */
+}
+
+html.dark .react-calendar__month-view__days__day--weekend {
+  color: #ff7f7f; /* Weekend days */
+}
+
+.react-calendar.calendar-dark-mode {
+  background-color: #1a1a1a; /* Darker background */
+  border-color: #333;
+}
+
+.react-calendar.calendar-dark-mode .react-calendar__navigation button {
+  color: #ccc; /* Lighter text for navigation */
+}
+
+.react-calendar.calendar-dark-mode .react-calendar__tile {
+  background: #2a2a2a; /* Darker tile background */
+  color: #eee; /* Lighter text for days */
+}
+
+.react-calendar.calendar-dark-mode .react-calendar__tile--now {
+  background: #3a3a3a; /* Today's tile background */
+}
+
+.react-calendar.calendar-dark-mode .react-calendar__tile--active {
+  background: #60a5fa; /* Active tile background (blue) */
+  color: white;
+}
+
+.react-calendar.calendar-dark-mode .react-calendar__tile--range {
+  background: #4f46e5; /* Range selection background */
+  color: white;
+}
+
+.react-calendar.calendar-dark-mode .react-calendar__tile--rangeStart,
+.react-calendar.calendar-dark-mode .react-calendar__tile--rangeEnd {
+  background: #60a5fa; /* Range start/end background */
+  color: white;
+}
+
+.react-calendar.calendar-dark-mode .react-calendar__month-view__weekdays__weekday,
+.react-calendar.calendar-dark-mode .react-calendar__month-view__weekdays__weekday abbr {
+  color: #bbb; /* Weekday labels */
+}
+
+.react-calendar.calendar-dark-mode .react-calendar__month-view__days__day--weekend {
+  color: #ff7f7f; /* Weekend days */
+}

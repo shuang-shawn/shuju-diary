@@ -1,9 +1,7 @@
-import { 
-  Home, 
-  Settings, 
-  FileText,
-  Layers,
-  CalendarDays,
+import {
+  Home,
+  Settings,
+  Users, CalendarDays
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -39,9 +37,9 @@ export function AppSidebar() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Groups" isActive={location.pathname.startsWith('/groups')} asChild>
+                <SidebarMenuButton tooltip="Groups" isActive={isActive('/groups')} asChild>
                   <Link to="/groups">
-                    <Layers className="w-4 h-4" />
+                    <Users className="w-4 h-4" />
                     <span>Groups</span>
                   </Link>
                 </SidebarMenuButton>

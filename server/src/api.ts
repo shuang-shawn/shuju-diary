@@ -431,7 +431,7 @@ diaryNoteRoutes.delete('/:noteId', async (c) => {
   }
 });
 
-protectedRoutes.route('/groups/:groupId/notes', diaryNoteRoutes);
+protectedRoutes.route('/groups/:groupId/diary-notes', diaryNoteRoutes);
 protectedRoutes.route('/groups', groupRoutes);
 
 // Mount the protected routes under /protected

@@ -1,0 +1,198 @@
+{
+    "calendarComponent": {
+      "name": "Dark Theme Calendar Grid",
+      "version": "1.0.0",
+      "description": "Monthly calendar view with dark theme and clean grid layout",
+  
+      "container": {
+        "background": "#1e2329",
+        "borderRadius": "8px",
+        "padding": "24px",
+        "width": "100%",
+        "maxWidth": "800px"
+      },
+  
+      "header": {
+        "monthYear": {
+          "text": "June 2025",
+          "fontSize": "24px",
+          "fontWeight": "600",
+          "color": "#ffffff",
+          "marginBottom": "24px",
+          "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        }
+      },
+  
+      "grid": {
+        "display": "grid",
+        "gridTemplateColumns": "repeat(7, 1fr)",
+        "gap": "1px",
+        "background": "#2a3038",
+        "borderRadius": "6px",
+        "overflow": "hidden"
+      },
+  
+      "dayCell": {
+        "structure": {
+          "width": "100%",
+          "aspectRatio": "1 / 1",
+          "minHeight": "80px",
+          "display": "flex",
+          "alignItems": "flex-start",
+          "justifyContent": "flex-start",
+          "padding": "12px",
+          "position": "relative"
+        },
+        
+        "background": {
+          "default": "#1e2329",
+          "hover": "#252b33",
+          "selected": "#2d3748"
+        },
+  
+        "dayNumber": {
+          "fontSize": "16px",
+          "fontWeight": "500",
+          "color": "#ffffff",
+          "lineHeight": "1.2",
+          "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        },
+  
+        "states": {
+          "default": {
+            "background": "#1e2329",
+            "color": "#ffffff",
+            "cursor": "pointer"
+          },
+          "hover": {
+            "background": "#252b33",
+            "transition": "background-color 0.15s ease"
+          },
+          "today": {
+            "background": "#2d3748",
+            "dayNumber": {
+              "color": "#4a9eff",
+              "fontWeight": "600"
+            }
+          },
+          "selected": {
+            "background": "#374151",
+            "border": "2px solid #4a9eff"
+          },
+          "otherMonth": {
+            "color": "#6b7280",
+            "background": "#1a1f25"
+          }
+        },
+  
+        "interactions": {
+          "hover": {
+            "transform": "none",
+            "boxShadow": "inset 0 0 0 1px rgba(255, 255, 255, 0.1)"
+          },
+          "click": {
+            "transform": "scale(0.98)",
+            "duration": "0.1s"
+          }
+        }
+      },
+  
+      "weekDays": {
+        "display": "none",
+        "note": "Week day headers not visible in this design - dates start directly with numbers"
+      },
+  
+      "layout": {
+        "rows": 5,
+        "columns": 7,
+        "startDay": "Sunday",
+        "cellAspectRatio": "1:1",
+        "gridGap": "1px",
+        "borderRadius": "6px"
+      },
+  
+      "typography": {
+        "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+        "monthTitle": {
+          "fontSize": "24px",
+          "fontWeight": "600",
+          "lineHeight": "1.2"
+        },
+        "dayNumber": {
+          "fontSize": "16px",
+          "fontWeight": "500",
+          "lineHeight": "1.2"
+        }
+      },
+  
+      "colors": {
+        "background": {
+          "container": "#1e2329",
+          "cell": "#1e2329",
+          "cellHover": "#252b33",
+          "gridSeparator": "#2a3038"
+        },
+        "text": {
+          "primary": "#ffffff",
+          "secondary": "#b8c5d1",
+          "muted": "#6b7280",
+          "accent": "#4a9eff"
+        },
+        "interactive": {
+          "hover": "rgba(255, 255, 255, 0.1)",
+          "selected": "#374151",
+          "border": "#4a9eff"
+        }
+      },
+  
+      "spacing": {
+        "containerPadding": "24px",
+        "headerMarginBottom": "24px",
+        "cellPadding": "12px",
+        "gridGap": "1px"
+      },
+  
+      "implementation": {
+        "structure": "7-column CSS Grid with 1px gaps",
+        "cellSizing": "aspect-ratio: 1/1 with min-height fallback",
+        "responsiveness": "Grid auto-adjusts to container width",
+        "accessibility": "Each cell should be focusable with keyboard navigation"
+      },
+  
+      "behaviorPatterns": {
+        "dateSelection": {
+          "singleSelect": true,
+          "multiSelect": false,
+          "rangeSelect": false
+        },
+        "navigation": {
+          "monthNavigation": "External controls (not shown in grid)",
+          "keyboardNavigation": "Arrow keys move between dates",
+          "clickBehavior": "Select date on click"
+        },
+        "visualization": {
+          "currentMonth": "Full opacity white text",
+          "otherMonths": "Muted gray text",
+          "today": "Accent color highlight",
+          "selected": "Background change with border"
+        }
+      },
+  
+      "cssImplementation": {
+        "gridSetup": ".calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; }",
+        "cellSetup": ".calendar-cell { aspect-ratio: 1/1; min-height: 80px; padding: 12px; }",
+        "hoverEffect": ".calendar-cell:hover { background-color: #252b33; }",
+        "transitions": "transition: all 0.15s ease;"
+      },
+  
+      "dataStructure": {
+        "monthData": {
+          "year": 2025,
+          "month": 6,
+          "daysInMonth": 30,
+          "startDayOfWeek": 0,
+          "dates": "Array of date objects with day number, isCurrentMonth, isToday, isSelected"
+        }
+      }
+    }
+  }

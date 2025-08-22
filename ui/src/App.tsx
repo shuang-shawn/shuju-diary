@@ -55,8 +55,8 @@ function App() {
     <AuthProvider>
       <ThemeProvider 
         attribute="class" 
-        defaultTheme="system" 
-        enableSystem
+        defaultTheme="dark" 
+        enableSystem={false}
         disableTransitionOnChange
         storageKey="volo-app-theme"
       >

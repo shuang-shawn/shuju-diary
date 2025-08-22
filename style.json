@@ -1,0 +1,299 @@
+{
+    "designSystem": {
+      "name": "Dark Dashboard Theme",
+      "version": "1.0.0",
+      "description": "Modern dark-themed dashboard design system with sidebar navigation and calendar interface",
+      
+      "colorPalette": {
+        "primary": {
+          "background": "#1a1f2e",
+          "surface": "#242b3d",
+          "surfaceElevated": "#2d3548",
+          "accent": "#4a9eff",
+          "accentHover": "#3d8ae6"
+        },
+        "text": {
+          "primary": "#ffffff",
+          "secondary": "#b8c5d1",
+          "muted": "#8892a0",
+          "accent": "#4a9eff"
+        },
+        "interactive": {
+          "hover": "rgba(255, 255, 255, 0.08)",
+          "active": "rgba(255, 255, 255, 0.12)",
+          "focus": "rgba(74, 158, 255, 0.2)",
+          "border": "rgba(255, 255, 255, 0.1)"
+        },
+        "semantic": {
+          "success": "#22c55e",
+          "warning": "#f59e0b",
+          "error": "#ef4444",
+          "info": "#3b82f6"
+        }
+      },
+  
+      "typography": {
+        "fontFamily": {
+          "primary": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+          "mono": "'SF Mono', 'Monaco', 'Consolas', monospace"
+        },
+        "scale": {
+          "xs": "0.75rem",
+          "sm": "0.875rem", 
+          "base": "1rem",
+          "lg": "1.125rem",
+          "xl": "1.25rem",
+          "2xl": "1.5rem",
+          "3xl": "1.875rem"
+        },
+        "weights": {
+          "normal": 400,
+          "medium": 500,
+          "semibold": 600,
+          "bold": 700
+        },
+        "lineHeights": {
+          "tight": 1.25,
+          "normal": 1.5,
+          "relaxed": 1.75
+        }
+      },
+  
+      "spacing": {
+        "scale": {
+          "xs": "0.25rem",
+          "sm": "0.5rem",
+          "md": "0.75rem",
+          "lg": "1rem",
+          "xl": "1.25rem",
+          "2xl": "1.5rem",
+          "3xl": "2rem",
+          "4xl": "2.5rem",
+          "5xl": "3rem"
+        }
+      },
+  
+      "borderRadius": {
+        "none": "0",
+        "sm": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "full": "9999px"
+      },
+  
+      "shadows": {
+        "sm": "0 1px 2px 0 rgba(0, 0, 0, 0.3)",
+        "md": "0 4px 6px -1px rgba(0, 0, 0, 0.4)",
+        "lg": "0 10px 15px -3px rgba(0, 0, 0, 0.5)",
+        "xl": "0 20px 25px -5px rgba(0, 0, 0, 0.6)"
+      },
+  
+      "layout": {
+        "sidebar": {
+          "width": "240px",
+          "background": "surface",
+          "padding": "lg",
+          "borderRight": "1px solid interactive.border"
+        },
+        "mainContent": {
+          "marginLeft": "240px",
+          "padding": "2xl",
+          "background": "primary.background"
+        },
+        "header": {
+          "height": "60px",
+          "padding": "0 2xl",
+          "background": "surface",
+          "borderBottom": "1px solid interactive.border"
+        }
+      },
+  
+      "components": {
+        "navigationSidebar": {
+          "structure": "vertical list with icons and text labels",
+          "itemHeight": "44px",
+          "itemPadding": "md lg",
+          "itemSpacing": "xs",
+          "iconSize": "20px",
+          "iconMarginRight": "md",
+          "hoverState": {
+            "background": "interactive.hover",
+            "borderRadius": "md"
+          },
+          "activeState": {
+            "background": "interactive.active",
+            "color": "text.accent",
+            "borderRadius": "md"
+          },
+          "sections": [
+            "primary navigation items",
+            "secondary/utility items",
+            "user/account items"
+          ]
+        },
+  
+        "calendar": {
+          "structure": "monthly grid view",
+          "headerHeight": "60px",
+          "cellSize": "square aspect ratio",
+          "cellPadding": "lg",
+          "monthNavigation": {
+            "position": "top center",
+            "fontSize": "xl",
+            "fontWeight": "semibold"
+          },
+          "dayLabels": {
+            "fontSize": "sm",
+            "color": "text.secondary",
+            "textAlign": "center",
+            "padding": "md"
+          },
+          "dateNumbers": {
+            "fontSize": "base",
+            "color": "text.primary",
+            "hoverState": {
+              "background": "interactive.hover",
+              "borderRadius": "md"
+            }
+          },
+          "gridGap": "1px",
+          "cellBackground": "surface"
+        },
+  
+        "button": {
+          "variants": {
+            "primary": {
+              "background": "accent",
+              "color": "white",
+              "hoverBackground": "accentHover"
+            },
+            "secondary": {
+              "background": "surface",
+              "color": "text.primary",
+              "hoverBackground": "interactive.hover"
+            },
+            "ghost": {
+              "background": "transparent",
+              "color": "text.primary",
+              "hoverBackground": "interactive.hover"
+            }
+          },
+          "padding": "md xl",
+          "borderRadius": "md",
+          "fontSize": "sm",
+          "fontWeight": "medium",
+          "transition": "all 0.2s ease"
+        },
+  
+        "topNavigation": {
+          "height": "60px",
+          "background": "surface",
+          "padding": "0 xl",
+          "items": [
+            {
+              "type": "logo/brand",
+              "position": "left"
+            },
+            {
+              "type": "user menu",
+              "position": "right"
+            }
+          ],
+          "borderBottom": "1px solid interactive.border"
+        },
+  
+        "floatingActionButton": {
+          "size": "56px",
+          "background": "accent",
+          "color": "white",
+          "borderRadius": "full",
+          "shadow": "lg",
+          "position": "fixed",
+          "bottom": "2xl",
+          "right": "2xl",
+          "hoverScale": "1.05",
+          "iconSize": "24px"
+        }
+      },
+  
+      "patterns": {
+        "cardContainer": {
+          "background": "surface",
+          "borderRadius": "lg",
+          "padding": "xl",
+          "shadow": "sm",
+          "border": "1px solid interactive.border"
+        },
+        
+        "listItem": {
+          "padding": "md lg",
+          "borderRadius": "md",
+          "hoverBackground": "interactive.hover",
+          "activeBackground": "interactive.active",
+          "transition": "background-color 0.15s ease"
+        },
+  
+        "iconWithText": {
+          "display": "flex",
+          "alignItems": "center",
+          "iconMarginRight": "md",
+          "iconSize": "20px"
+        },
+  
+        "sectionHeader": {
+          "fontSize": "lg",
+          "fontWeight": "semibold",
+          "color": "text.primary",
+          "marginBottom": "lg",
+          "borderBottom": "1px solid interactive.border",
+          "paddingBottom": "md"
+        }
+      },
+  
+      "animations": {
+        "default": {
+          "duration": "0.2s",
+          "easing": "cubic-bezier(0.4, 0, 0.2, 1)"
+        },
+        "slow": {
+          "duration": "0.3s",
+          "easing": "cubic-bezier(0.4, 0, 0.2, 1)"
+        },
+        "fast": {
+          "duration": "0.1s",
+          "easing": "cubic-bezier(0.4, 0, 0.2, 1)"
+        }
+      },
+  
+      "breakpoints": {
+        "sm": "640px",
+        "md": "768px", 
+        "lg": "1024px",
+        "xl": "1280px",
+        "2xl": "1536px"
+      },
+  
+      "designPrinciples": {
+        "darkThemeFirst": "Designed primarily for dark mode with high contrast",
+        "minimalistIcons": "Simple, clean iconography with consistent stroke weights",
+        "subtleInteractions": "Gentle hover states and smooth transitions",
+        "informationHierarchy": "Clear visual hierarchy through typography and spacing",
+        "accessibleContrast": "High contrast ratios for text readability",
+        "consistentSpacing": "Systematic spacing scale applied throughout",
+        "modernBorderRadius": "Moderate border radius for contemporary feel"
+      },
+  
+      "usage": {
+        "primaryUseCase": "Dashboard and admin interfaces",
+        "targetDevices": ["desktop", "tablet"],
+        "keyFeatures": [
+          "Sidebar navigation with icons",
+          "Calendar/date picker components", 
+          "Card-based content layout",
+          "Floating action buttons",
+          "Dark theme optimized"
+        ]
+      }
+    }
+  }

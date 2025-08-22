@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css'; // Import calendar styles
 import { api } from '@/lib/serverComm';
 import { useAuth } from '@/lib/auth-context';
 import { Input } from '@/components/ui/input';
@@ -66,6 +65,17 @@ export function CalendarPage() {
   const [showErrorDialog, setShowErrorDialog] = useState(false);
   const [datesWithNotes, setDatesWithNotes] = useState<Set<string>>(new Set());
 
+  const numberOfMonths = 3; // Display 3 months at a time, hardcoded as per previous logic
+
+  useEffect(() => {
+    console.log('Current user:', user);
+    if (!user) {
+      setError('User not authenticated. Please log in.');
+      setShowErrorDialog(true);
+      setLoading(false); // Stop loading if no user
+    }
+  }, [user]);
+
   useEffect(() => {
     if (user?.uid) {
       fetchGroups();
@@ -80,9 +90,11 @@ export function CalendarPage() {
   }, [selectedGroupId, date, user?.uid]);
 
   const fetchGroups = async () => {
+    console.log('Fetching groups...');
     try {
       setLoading(true);
       const data = await api.getGroups();
+      console.log('Fetched groups:', data);
       setGroups(data);
       if (data.length > 0 && !selectedGroupId) {
         setSelectedGroupId(data[0].groups.id); // Select the first group by default
@@ -94,14 +106,17 @@ export function CalendarPage() {
       setShowErrorDialog(true);
     } finally {
       setLoading(false);
+      console.log('Finished fetching groups. Loading state:', false);
     }
   };
 
   const fetchAllNotesForGroup = async () => {
     if (!selectedGroupId) return;
 
+    console.log('Fetching all notes for group:', selectedGroupId);
     try {
       const allNotes = await api.getDiaryNotesByGroupId(selectedGroupId);
+      console.log('Fetched all notes for group:', allNotes);
       const dates = new Set<string>();
       allNotes.forEach(note => {
         dates.add(formatDateToYYYYMMDD(new Date(note.createdAt)));
@@ -116,12 +131,14 @@ export function CalendarPage() {
   const fetchNotesForSelectedDate = async () => {
     if (!selectedGroupId || !user?.uid) return;
 
+    console.log('Fetching notes for selected date:', date.toLocaleDateString(), 'and group:', selectedGroupId);
     try {
       setLoading(true);
       const allNotesInGroup = await api.getDiaryNotesByGroupId(selectedGroupId);
       const notesOnSelectedDate = allNotesInGroup.filter(note => {
         return formatDateToYYYYMMDD(new Date(note.createdAt)) === formatDateToYYYYMMDD(date);
       });
+      console.log('Notes on selected date:', notesOnSelectedDate);
       setNotes(notesOnSelectedDate);
       setError('');
     } catch (err) {
@@ -130,8 +147,17 @@ export function CalendarPage() {
       setShowErrorDialog(true);
     } finally {
       setLoading(false);
+      console.log('Finished fetching notes for date. Loading state:', false);
     }
   };
+
+  useEffect(() => {
+    console.log('Current groups state:', groups);
+    console.log('Current selectedGroupId state:', selectedGroupId);
+    console.log('Current notes state:', notes);
+    console.log('Current loading state:', loading);
+    console.log('Current error state:', error);
+  }, [groups, selectedGroupId, notes, loading, error]);
 
   const handleDateChange = (newDate: any) => {
     setDate(newDate);
@@ -178,21 +204,51 @@ export function CalendarPage() {
   };
 
   if (loading) {
-    return <div className="container mx-auto p-6 text-center">Loading...</div>;
+    return (
+      <div className="flex min-h-screen w-full flex-col bg-muted/40 items-center justify-center text-center">
+        <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-0">
+          <h1 className="text-3xl font-bold mb-6">Loading Calendar...</h1>
+          {error && <p className="text-red-500">Error: {error}</p>}
+          {!user && <p className="text-orange-500">Waiting for user authentication...</p>}
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="flex min-h-screen w-full flex-col">
+      <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-0">
       <h1 className="text-3xl font-bold mb-6">Calendar</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="flex flex-col items-center">
-          <Calendar
-            onChange={handleDateChange}
-            value={date}
-            tileContent={tileContent}
-            className={cn({'calendar-dark-mode': theme === 'dark'})}
-          />
+          <div className="overflow-y-auto max-h-[80vh] w-full">
+            {Array.from({ length: numberOfMonths }).map((_, index) => {
+              const monthDate = new Date();
+              monthDate.setMonth(date.getMonth() + index);
+              const monthName = monthDate.toLocaleDateString('en-US', { 
+                month: 'long', 
+                year: 'numeric' 
+              });
+              
+              return (
+                <div key={index} className={index > 0 ? 'mt-8' : ''}>
+                  <h2 className="text-lg font-medium mb-0 text-center text-foreground bg-background px-6 py-4 rounded-t-xl border-b border-border">
+                    {monthName}
+                  </h2>
+                  <Calendar
+                    onChange={handleDateChange}
+                    value={monthDate}
+                    tileContent={tileContent}
+                    className="react-calendar"
+                    view="month" // Always display month view
+                    showNavigation={false} // Disable navigation arrows
+                    showNeighboringMonth={false} // Hide days from neighboring months
+                  />
+                </div>
+              );
+            })}
+          </div>
           <div className="mt-4 w-full max-w-sm">
             <h2 className="text-xl font-semibold mb-2">Select Group:</h2>
             <Select onValueChange={setSelectedGroupId} value={selectedGroupId || ''}>
@@ -267,6 +323,7 @@ export function CalendarPage() {
         </DialogContent>
       </Dialog>
 
+    </div>
     </div>
   );
 }
